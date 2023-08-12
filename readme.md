@@ -14,7 +14,7 @@ Next time you can indicate the path to the vector DB and launch the bot.
 GGML model could be download on https://huggingface.co/TheBloke.
 For using Apple m1 acceleration from llama_cpp_python model should be a q4_0 quantization. Model name should end by 'q4_0.bin'
 
-##References
+## References
 https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/
 https://huggingface.co/TheBloke
 https://github.com/kennethleungty/Llama-2-Open-Source-LLM-CPU-Inference/tree/main
