@@ -93,14 +93,17 @@ def setup_GPU_model(path_to_model):
 
 def set_qa_prompt():
     """Use the defined template to create a PromptTemplate object"""
-    prompt = ChatPromptTemplate(
-    messages=[
-        SystemMessagePromptTemplate.from_template(qa_template),
-        # The `variable_name` here is what must align with memory
-        MessagesPlaceholder(variable_name="history"),
-        HumanMessagePromptTemplate.from_template("{question}")
-        ]
-    )
+    try :
+        prompt = ChatPromptTemplate(
+        messages=[
+            SystemMessagePromptTemplate.from_template(qa_template),
+            # The `variable_name` here is what must align with memory
+            MessagesPlaceholder(variable_name="history"),
+            HumanMessagePromptTemplate.from_template("{question}")
+            ]
+        )
+    except:
+        raise Exception("Error during prompt setup")
     return prompt
 
 
@@ -134,6 +137,8 @@ def setup_QA(path_to_db,path_to_model):
         llm = setup_GPU_model(path_to_model)
     elif test_cpu_arch() == 'x86_64':
         llm = setup_model(path_to_model)
+    else :
+        llm = setup_model(path_to_model) #Ready to be modified for CUDA use
 
     dbqa = setup_dbqa(llm,path_to_db)
     return dbqa
